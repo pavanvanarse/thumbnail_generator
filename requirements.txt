@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+python-dotenv
+httpx
+pillow         # only used if you call /generate-thumbnail/overlay

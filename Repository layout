@@ -1,0 +1,11 @@
+thumbnail-generator/
+│
+├── .replit
+├── replit.nix            # (optional, keeps the Replit VM reproducible)
+├── requirements.txt
+├── README.md
+├── .env.example
+└── app/
+    ├── main.py
+    ├── stability_client.py
+    └── text_overlay.py   # (optional; shows how to add title text with PIL)

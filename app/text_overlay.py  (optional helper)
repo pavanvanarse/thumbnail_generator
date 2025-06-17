@@ -1,0 +1,22 @@
+from io import BytesIO
+from PIL import Image, ImageDraw, ImageFont
+import requests, base64
+
+def overlay_title(img_url: str, title: str) -> str:
+    """
+    Downloads the image, writes the title text on top, returns base64 string.
+    """
+    img_bytes = requests.get(img_url).content
+    img = Image.open(BytesIO(img_bytes)).convert("RGB")
+
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("arial.ttf", size=int(img.height * 0.08))
+    margin = int(img.width * 0.03)
+
+    # simple text shadow
+    draw.text((margin+2, margin+2), title, font=font, fill="black")
+    draw.text((margin, margin), title, font=font, fill="white")
+
+    buf = BytesIO()
+    img.save(buf, format="PNG")
+    return base64.b64encode(buf.getvalue()).decode()
